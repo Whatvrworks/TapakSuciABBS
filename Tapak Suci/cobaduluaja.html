@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - EXTRACURRICULAR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #ffffff;
+      --header-bg: rgba(0, 0, 0, 0.6);
+      --card-bg: #1a1a1a;
+      --accent: #d72638;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+    }
+
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .about-container {
+      display: flex;
+      height: 100vh;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-left, .about-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .slider-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 15px;
+    }
+
+    .slide-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: opacity 0.8s ease-in-out;
+      opacity: 0;
+    }
+
+    .slide-img.active {
+      opacity: 1;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: var(--text-color);
+      cursor: pointer;
+      z-index: 2;
+      padding: 0.5rem;
+      user-select: none;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    .about-description {
+      margin-top: 1.5rem;
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .about-description h2 {
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+
+    .about-right h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1.2rem 2rem;
+      border-radius: 12px;
+      border: 1px solid #333;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      width: 80%;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .bottom-header {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      font-size: 0.75rem;
+      background-color: var(--header-bg);
+      z-index: 3;
+    }
+
+    .bottom-header div {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .bottom-header a {
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s, filter 0.3s;
+    }
+
+    .bottom-header a:hover {
+      color: #888;
+    }
+
+    .bottom-header:hover a:not(:hover) {
+      filter: blur(2px);
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .about-left, .about-right {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+      }
+
+      .slider-wrapper {
+        height: 260px;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="about-container">
+    <!-- KIRI -->
+    <div class="about-left">
+      <div class="slider-wrapper">
+        <img src="image/silat1.jpg" class="slide-img active">
+        <img src="image/silat2.jpg" class="slide-img">
+        <img src="image/silat3.jpg" class="slide-img">
+        <img src="image/silat4.jpg" class="slide-img">
+        <img src="image/silat5.jpg" class="slide-img">
+        <img src="image/silat6.jpg" class="slide-img">
+        <img src="image/silat7.jpg" class="slide-img">
+        <img src="image/silat8.jpg" class="slide-img">
+        <img src="image/silat9.jpg" class="slide-img">
+        <img src="image/silat10.jpg" class="slide-img">
+        <img src="image/silat11.jpg" class="slide-img">
+        <img src="image/silat12.jpg" class="slide-img">
+        <img src="image/silat13.jpg" class="slide-img">
+        <img src="image/silat14.jpg" class="slide-img">
+        <img src="image/silat16.jpg" class="slide-img">
+        <img src="image/silat17.jpg" class="slide-img">
+        <img src="image/silat18.jpg" class="slide-img">
+        <img src="image/silat19.jpg" class="slide-img">
+        <div class="arrow arrow-left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow arrow-right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="about-description">
+        <h2>Tentang Kami</h2>
+        <p>
+          Tapak Suci bukan hanya tentang bela diri, tapi juga pembentukan karakter. Kami melatih disiplin, keberanian, dan solidaritas, membentuk siswa menjadi pribadi kuat secara fisik dan mental, dengan semangat persaudaraan dan keimanan yang tinggi.
+        </p>
+      </div>
+    </div>
+
+    <!-- KANAN -->
+    <div class="about-right">
+      <div>
+        <h2>Keuntungan Mengikuti Ekstrakurikuler</h2>
+        <div class="card-container">
+          <div class="card">Meningkatkan kedisiplinan dan tanggung jawab</div>
+          <div class="card">Melatih kekuatan fisik dan teknik bela diri</div>
+          <div class="card">Menumbuhkan rasa percaya diri dan fokus</div>
+          <div class="card">Berpeluang mengikuti lomba hingga tingkat nasional</div>
+          <div class="card">Menjalin persahabatan dan kerja sama tim</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-header">
+    <div>
+      <h2><a href="index.html">TS</a></h2>
+      <a href="Art.html">ABOUT</a>
+      <a href="prestasi.html">PRESTASI</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="Contact.html">CONTACT</a>
+      <a href="register.html">REGISTER</a>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".slide-img");
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    setInterval(() => {
+      nextSlide();
+    }, 6000);
+  </script>
+</body>
+</html>

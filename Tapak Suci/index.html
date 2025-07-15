@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TAPAK SUCI</title>
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #f5f5f5;
+      --header-bg: rgba(0, 0, 0, 0.6);
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .center-text h2 {
+      cursor: pointer;
+      display: inline-block;
+      transition: filter 0.3s;
+    }
+
+    .center-text:hover h2:not(:hover) {
+      filter: blur(2px);
+    }
+
+    .bottom-header {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      font-size: 0.75rem;
+      background-color: var(--header-bg);
+      z-index: 3;
+    }
+
+    .bottom-header div {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .bottom-header a {
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s, filter 0.3s;
+    }
+
+    .bottom-header a:hover {
+      color: #888;
+    }
+
+    .bottom-header:hover a:not(:hover) {
+      filter: blur(2px);
+    }
+
+    .rotate {
+      transform: rotate(360deg);
+    }
+
+    @media (max-width: 768px) {
+      .bottom-header {
+        flex-direction: column;
+        align-items: center;
+        font-size: 0.65rem;
+        padding: 1rem;
+        gap: 0.5rem;
+      }
+
+      .bottom-header div {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      .center-text h1, .center-text h2 {
+        font-size: 1.2rem;
+      }
+    }
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100vw;
+      min-height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.3; 
+      pointer-events: none; 
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="background-video">
+    <source src="videobg.mp4" type="video/mp4" />
+  </video>
+
+  <div class="center-text">
+    <h1> TAPAK SUCI </h1><br>
+    <h2 onclick="location.href='about.html'">  ABOUT  </h2><hr>
+    <h2 onclick="location.href='prestasi.html'">  PRESTASI  </h2><hr>
+    <h2 onclick="location.href='gallery.html'">  GALLERY  </h2>
+  </div>
+
+  <div class="bottom-header">
+    <div>
+      <h2><a href="Home.html">TS</a></h2>
+      <a href="about.html">ABOUT</a>
+      <a href="prestasi.html">PRESTASI</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="Contact.html">CONTACT</a>
+      <a href="register.html">REGISTER</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') document.body.classList.add('light');
+    });
+  </script>
+</body>
+</html>
