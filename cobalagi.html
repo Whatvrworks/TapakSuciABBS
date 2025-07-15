@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRESTASI</title>
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #f5f5f5;
+      --header-bg: rgba(0, 0, 0, 0.6);
+      --transition-speed: 0.5s;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+    }
+
+    .mood-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .mood-item {
+      position: absolute;
+      width: 140px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #eee;
+      transition: transform 0.3s ease;
+      transform: rotate(var(--rotation));
+    }
+
+    .mood-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .mood-item:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
+
+    .mood-container:hover .mood-item {
+      filter: blur(2px);
+      transition: filter 0.3s;
+    }
+    
+    .mood-item:hover {
+      filter: none !important;
+      transform: scale(1.1) rotate(var(--rotation));
+      z-index: 2;
+    }
+
+    .mood-item:hover ~ .mood-item {
+      filter: blur(2px);
+    }
+
+    .center-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    .bottom-header {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      font-size: 0.75rem;
+      background-color: var(--header-bg);
+    }
+
+    .bottom-header div {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .bottom-header a {
+      text-decoration: none;
+      color: var(--text-color);
+      transition: color 0.3s, filter 0.3s;
+    }
+
+    .bottom-header a:hover {
+      color: #888;
+    }
+
+    .bottom-header:hover a:not(:hover) {
+      filter: blur(2px);
+    }
+
+        /* Overlay */
+        .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeIn var(--transition-speed) ease-in-out;
+    }
+
+    .overlay-content {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      max-width: 80vw;
+      align-items: center;
+      transform: scale(0.8);
+      opacity: 0;
+      animation: morphZoomIn var(--transition-speed) ease-out forwards;
+    }
+
+    .overlay img {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      width: 250px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .overlay .desc {
+      max-width: 420px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .join-btn{
+      text-decoration: none;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      color: #0a0a0a;
+      background-color: #eee;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .join-btn:hover{
+      background-color: #0a0a0a;
+      color: #eee;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 4rem;
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes morphZoomIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="mood-container" id="moodContainer">
+    <div class="center-label">PRESTASI</div>
+  </div>
+
+  <div class="bottom-header">
+    <div>
+      <h2><a href="Home.html">TS</a></h2>
+      <a href="art.html">ABOUT</a>
+      <a href="Sport.html">PRESTASI</a>
+      <a href="Club.html">GALLERY</a>
+      <a href="Contact.html">CONTACT</a>
+      <a href="register.html">REGISTER</a>
+    </div>
+  </div>
+
+  <div class="overlay" id="detailView">
+    <div class="close-btn" onclick="closeDetail()">&times;</div>
+    <div class="overlay-content">
+      <img id="detailImg" src="" alt="detail" />
+      <div class="desc" id="detailDesc"></div>
+    </div>
+  </div>
+
+  <script>
+    const moods = [
+  {
+    label: "POPDA",
+    imgs: ["silat6.jpg", "silat9.jpg", "silat10.jpg", "silat11.jpg",],
+    desc: "Suka main gitar atau nyanyi? Ekskul Akustik adalah tempat yang pas buat kamu yang ingin menyalurkan bakat musik sambil tampil bareng teman-teman. Nggak perlu jago dulu—yang penting punya semangat dan cinta musik. Yuk, bikin musik jadi seru!"
+  },
+  {
+    label: "KEJURDA",
+    imgs: ["fotografi.jpg", "fotografi2.jpg", "fotografi3.png", "fotografi4.jpg",],
+    desc: "Punya mata tajam dan suka menangkap momen? Di ekskul Fotografi, kamu bisa belajar teknik jepret yang kece, eksplor tempat seru, dan jadi tim dokumentasi berbagai event sekolah. Siap bikin karya yang bisa bikin orang kagum?"
+  },
+  {
+    label: "KEJURNAS",
+    imgs: ["silat14.jpg", "silat16.jpg", "silat17.jpg", "silat18.jpg", ],
+    desc: "Kalau kamu suka tampil di depan orang, berakting, atau sekadar ingin lebih percaya diri, Teater jawabannya! Di sini, kamu bisa jadi siapa saja di atas panggung dan belajar kerja sama tim sambil seru-seruan bareng. Panggung udah nunggu, lho!"
+  },
+  {
+    label: "LAWU OPEN",
+    imgs: ["paduansuara.jpg", "paduan2.jpeg", "paduan3.jpeg", "paduan4.jpeg",],
+    desc: "Suaramu punya potensi lebih? Atau kamu suka nyanyi rame-rame? Yuk gabung Paduan Suara! Di sini kamu akan dilatih bernyanyi dengan teknik yang tepat dan harmoni yang indah. Tampil di acara keren dan bikin penonton merinding? Bisa banget!"
+  },
+
+    ];
+
+    const container = document.getElementById("moodContainer");
+    const radius = Math.min(window.innerWidth, window.innerHeight) / 2.8;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    moods.forEach((mood, i) => {
+      const angle = (i / moods.length) * 2 * Math.PI;
+      const x = centerX + radius * Math.cos(angle) - 70;
+      const y = centerY + radius * Math.sin(angle) - 50;
+
+      const item = document.createElement("div");
+      item.className = "mood-item";
+      item.style.left = `${x}px`;
+      item.style.top = `${y}px`;
+
+      const rotation = (Math.random() - 0.5) * 30;
+      item.style.setProperty('--rotation', `${rotation}deg`);
+
+      item.innerHTML = `
+      <img src="image/${mood.imgs[0]}" alt="${mood.label}">
+        <div>${mood.label}</div>
+      `;
+
+      item.addEventListener('click', () => openDetail(mood));
+
+      container.appendChild(item);
+    });
+
+    function openDetail(mood) {
+  const detailView = document.getElementById('detailView');
+  const overlayContent = detailView.querySelector('.overlay-content');
+
+  // Kosongkan konten lama
+  overlayContent.innerHTML = "";
+
+  // Tambahkan konten baru
+  overlayContent.innerHTML = `
+    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+      
+      <!-- Barisan gambar horizontal -->
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem;">
+        ${mood.imgs.slice(0, 5).map(img => `
+          <img src="image/${img}" alt="${mood.label}" style="width: 250px; height: auto; border-radius: 10px;">
+        `).join('')}
+      </div>
+
+      <!-- Deskripsi Ekskul -->
+      <p style="max-width: 600px; margin-bottom: 1rem;">${mood.desc}</p>
+
+      <!-- Tombol Join -->
+      <a href="register.html" class="join-btn">Join Us</a>
+    </div>
+  `;
+
+  detailView.style.display = 'flex';
+}
+
+function closeDetail() {
+  document.getElementById('detailView').style.display = 'none';
+}
+
+  </script>
+</body>
+</html>
